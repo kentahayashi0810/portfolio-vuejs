@@ -104,7 +104,7 @@
   margin: 0 auto;
   background-color: #dce2ec;
   color: #394563;
-  margin-top: 100px;
+  margin-top: 70px;
   padding: 6rem 0;
 }
 .frontAbout .frontAbout__wrap {
