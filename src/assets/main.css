@@ -1,0 +1,49 @@
+@import './base.css';
+@import './reset.css';
+
+html {
+  overflow: scroll;
+  color: #dce2ec;
+  font-size: 62.5%;
+  background-color: #394563;
+}
+body {
+  color: #dce2ec;
+  font-family: 'Rajdhani', sans-serif;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  background-color: #394563;
+  overflow: hidden;
+}
+.inner {
+  width: 100%;
+  max-width: calc(1400px + 6rem);
+  padding-right: 3rem;
+  padding-left: 3rem;
+  margin: 0 auto;
+}
+@media only screen and (max-width: 899px) {
+  .inner {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}
+.inner.-wide {
+  max-width: calc(1200px + 3.2rem);
+}
+.inner.-tight {
+  max-width: calc(960px + 3.2rem);
+}
+@media only screen and (max-width: 899px) {
+  .-pc-only {
+    display: none;
+  }
+}
+.-sp-only {
+  display: none;
+}
+@media only screen and (max-width: 899px) {
+  .-sp-only {
+    display: inline-block;
+  }
+}
