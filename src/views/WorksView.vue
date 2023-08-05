@@ -1,4 +1,19 @@
-<script setup></script>
+<script setup>
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+import WorkCard from '../components/WorkCard.vue'
+
+const works = ref(null)
+
+onMounted(() => {
+  axios
+    .get('https://my-json-server.typicode.com/kentahayashi0810/my-works-api/works')
+    .then((response) => {
+      works.value = response.data
+    })
+    .catch((errro) => console.log(error))
+})
+</script>
 
 <template>
   <section class="frontWorks" id="frontWorks">
@@ -8,26 +23,8 @@
         Here is a collection of websites / projects I have worked on.
       </p>
 
-      <ul class="frontWorks__flexbox">
-        <li class="frontWorks__flexItem js-fadein-ready">
-          <a href="">
-            <h4 class="frontWorks__flexItem-title"></h4>
-
-            <figure class="frontWorks__flexItem-image">
-              <div class="frontWorks__imageWrap"></div>
-              <img src="" alt="" />
-            </figure>
-
-            <dl class="frontWorks__table">
-              <dt>Tools I used:</dt>
-              <dd></dd>
-              <dt>Pages I coded:</dt>
-              <dd></dd>
-              <dt>Features:</dt>
-              <dd></dd>
-            </dl>
-          </a>
-        </li>
+      <ul v-if="works" class="frontWorks__flexbox">
+        <WorkCard v-for="work in works" :work="work"></WorkCard>
       </ul>
     </div>
   </section>
@@ -79,74 +76,5 @@
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
-}
-.frontWorks .frontWorks__flexItem {
-  padding: 8rem 10rem;
-  width: 100%;
-  max-width: 800px;
-  margin: 6rem auto 0;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px rgba(51, 51, 51, 0.4);
-}
-@media only screen and (max-width: 899px) {
-  .frontWorks .frontWorks__flexItem {
-    padding: 4rem 1.6rem;
-  }
-}
-.frontWorks .frontWorks__flexItem-title {
-  color: #394563;
-  font-size: 4rem;
-  font-weight: 700;
-  margin: 2rem 0;
-}
-@media only screen and (max-width: 899px) {
-  .frontWorks .frontWorks__flexItem-title {
-    max-width: 600px;
-    margin: 2rem auto;
-    font-size: 2.8rem;
-  }
-}
-.frontWorks .frontWorks__flexItem-image {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto 3rem;
-}
-.frontWorks .frontWorks__flexItem-image img {
-  width: 100%;
-  object-fit: cover;
-  object-position: top;
-}
-@media only screen and (max-width: 899px) {
-  .frontWorks .frontWorks__flexItem-image {
-    max-width: 600px;
-  }
-}
-.frontWorks .frontWorks__imageWrap {
-  position: absolute;
-  z-index: 100;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  transition: 0.3s;
-}
-.frontWorks .frontWorks__imageWrap:hover {
-  background-color: rgba(255, 255, 255, 0.4);
-}
-.frontWorks .frontWorks__table {
-  color: #333;
-  font-size: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
-}
-.frontWorks .frontWorks__table dt {
-  margin-top: 2rem;
-}
-@media only screen and (max-width: 899px) {
-  .frontWorks .frontWorks__table {
-    max-width: 600px;
-    font-size: 1.6rem;
-  }
 }
 </style>

@@ -1,9 +1,14 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+import { ref, onMounted } from 'vue'
+
+const windowHeight = ref(0)
+
+windowHeight.value = document.documentElement.clientHeight + 'px'
 </script>
 
 <template>
-  <section class="frontGreeting">
+  <section class="frontGreeting" :style="{ height: windowHeight }">
     <div class="inner">
       <div class="frontGreeting__box">
         <p class="frontGreeting__intro">Hi, My name is</p>
@@ -24,7 +29,7 @@ import { RouterLink } from 'vue-router'
 <style scoped>
 .frontGreeting {
   width: 100%;
-  height: 100vh;
+
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -32,7 +37,7 @@ import { RouterLink } from 'vue-router'
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 70px;
 }
 .frontGreeting .frontGreeting__box {
   max-width: 900px;
